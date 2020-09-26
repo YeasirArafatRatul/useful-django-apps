@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'CustomManagementCommand',
+    # 'geolocation',
 ]
 
 MIDDLEWARE = [
@@ -53,10 +56,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoAppsProject.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')  # for HTML templates
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')  # for css, js files
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +126,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+# Extraplaces for collectstatic to find static files
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = MEDIA_DIR
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# needs the country and city database downloaded from maxmind.com
+# GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
